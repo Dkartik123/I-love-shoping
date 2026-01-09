@@ -220,7 +220,7 @@ class ValidationTest {
         @ParameterizedTest
         @DisplayName("Should validate phone number format")
         @ValueSource(strings = {
-                "+1234567890",
+                "+37253740504",
                 "+14155551234",
                 "1234567890123"
         })

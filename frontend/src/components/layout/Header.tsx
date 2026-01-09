@@ -16,12 +16,12 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <p>Free shipping on orders over $50!</p>
           <div className="hidden md:flex items-center space-x-4">
-            <a href="tel:+1234567890" className="hover:underline">
-              +1 (234) 567-890
+            <a href="tel:+37253740504" className="hover:underline">
+              +372 53 740 504
             </a>
             <span>|</span>
-            <a href="mailto:support@iloveshopping.com" className="hover:underline">
-              support@iloveshopping.com
+            <a href="mailto:dkartik30@gmail.com" className="hover:underline">
+              dkartik30@gmail.com
             </a>
           </div>
         </div>
