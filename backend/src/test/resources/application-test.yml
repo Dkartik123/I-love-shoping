@@ -1,0 +1,62 @@
+# Test configuration for running unit and integration tests
+spring:
+  application:
+    name: i-love-shopping-test
+
+  # H2 in-memory database for testing
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+    show-sql: false
+
+  # Disable Flyway for tests
+  flyway:
+    enabled: false
+
+  # Disable Redis for tests
+  data:
+    redis:
+      host: localhost
+      port: 6379
+    repositories:
+      enabled: false
+
+  # Mail configuration (mock)
+  mail:
+    host: localhost
+    port: 1025
+
+# JWT Configuration for tests
+jwt:
+  secret: test-secret-key-must-be-at-least-32-characters-long-for-hs256-algorithm
+  access-token-expiration: 900000
+  refresh-token-expiration: 604800000
+
+# Disable reCAPTCHA verification in tests
+recaptcha:
+  enabled: false
+  secret: test-secret
+
+# OAuth2 disabled for tests
+spring.security.oauth2.client.registration.google.client-id: test
+spring.security.oauth2.client.registration.google.client-secret: test
+spring.security.oauth2.client.registration.facebook.client-id: test
+spring.security.oauth2.client.registration.facebook.client-secret: test
+
+# Logging
+logging:
+  level:
+    root: WARN
+    com.iloveshopping: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
