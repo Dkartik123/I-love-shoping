@@ -43,7 +43,7 @@ export default function ProductDetailPage() {
         {/* Images */}
         <div>
           <img
-            src={product.primaryImageUrl || '/placeholder.jpg'}
+            src={product.primaryImageUrl || product.images?.[0]?.imageUrl || '/placeholder.jpg'}
             alt={product.name}
             className="w-full aspect-square object-cover rounded-lg"
           />

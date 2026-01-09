@@ -56,7 +56,7 @@ public class ProductService {
     /**
      * Get product by slug.
      */
-    @Transactional(readOnly = true)
+    @Transactional
     public ProductResponse getProductBySlug(String slug) {
         Product product = productRepository.findBySlug(slug)
                 .orElseThrow(() -> new ResourceNotFoundException("Product", "slug", slug));
@@ -205,8 +205,17 @@ public class ProductService {
             result = productRepository.findPriceRange();
         }
 
-        BigDecimal min = result != null && result[0] != null ? (BigDecimal) result[0] : BigDecimal.ZERO;
-        BigDecimal max = result != null && result[1] != null ? (BigDecimal) result[1] : BigDecimal.ZERO;
+        BigDecimal min = BigDecimal.ZERO;
+        BigDecimal max = BigDecimal.ZERO;
+        
+        if (result != null && result.length >= 2) {
+            if (result[0] != null) {
+                min = result[0] instanceof BigDecimal ? (BigDecimal) result[0] : new BigDecimal(result[0].toString());
+            }
+            if (result[1] != null) {
+                max = result[1] instanceof BigDecimal ? (BigDecimal) result[1] : new BigDecimal(result[1].toString());
+            }
+        }
 
         return Map.of("min", min, "max", max);
     }

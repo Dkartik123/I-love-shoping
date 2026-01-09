@@ -12,6 +12,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     slug,
     name,
     primaryImageUrl,
+    images,
     price,
     compareAtPrice,
     averageRating,
@@ -22,12 +23,14 @@ export default function ProductCard({ product }: ProductCardProps) {
     featured,
   } = product;
 
+  const imageUrl = primaryImageUrl || images?.[0]?.imageUrl || '/placeholder.jpg';
+
   return (
     <div className="card group">
       {/* Image */}
       <Link to={`/products/${slug}`} className="block relative aspect-square overflow-hidden">
         <img
-          src={primaryImageUrl || '/placeholder.jpg'}
+          src={imageUrl}
           alt={name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
