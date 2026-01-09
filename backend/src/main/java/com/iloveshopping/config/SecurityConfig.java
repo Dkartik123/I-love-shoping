@@ -75,6 +75,7 @@ public class SecurityConfig {
                 // Public endpoints
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/oauth2/**").permitAll()
+                .requestMatchers("/login/oauth2/**").permitAll()
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 .requestMatchers(HttpMethod.GET, "/products/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/categories/**").permitAll()
@@ -92,7 +93,7 @@ public class SecurityConfig {
                 .authorizationEndpoint(authorization -> 
                     authorization.baseUri("/oauth2/authorize"))
                 .redirectionEndpoint(redirection -> 
-                    redirection.baseUri("/oauth2/callback/*"))
+                    redirection.baseUri("/login/oauth2/code/*"))
                 .userInfoEndpoint(userInfo -> 
                     userInfo.userService(customOAuth2UserService))
                 .successHandler(oAuth2AuthenticationSuccessHandler)

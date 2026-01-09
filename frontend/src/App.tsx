@@ -10,6 +10,7 @@ import RegisterPage from '@/pages/auth/RegisterPage'
 import ForgotPasswordPage from '@/pages/auth/ForgotPasswordPage'
 import ResetPasswordPage from '@/pages/auth/ResetPasswordPage'
 import TwoFactorPage from '@/pages/auth/TwoFactorPage'
+import OAuth2RedirectPage from '@/pages/auth/OAuth2RedirectPage'
 import ProductsPage from '@/pages/products/ProductsPage'
 import ProductDetailPage from '@/pages/products/ProductDetailPage'
 import CategoryPage from '@/pages/products/CategoryPage'
@@ -29,6 +30,7 @@ function App() {
           <Route path="forgot-password" element={<ForgotPasswordPage />} />
           <Route path="reset-password" element={<ResetPasswordPage />} />
           <Route path="2fa" element={<TwoFactorPage />} />
+          <Route path="oauth2/redirect" element={<OAuth2RedirectPage />} />
           
           {/* Product routes */}
           <Route path="products" element={<ProductsPage />} />

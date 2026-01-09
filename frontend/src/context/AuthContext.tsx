@@ -12,6 +12,7 @@ interface AuthContextType {
   requiresTwoFactor: boolean;
   login: (data: LoginRequest) => Promise<void>;
   loginWith2FA: (code: string) => Promise<void>;
+  loginWithTokens: (accessToken: string, refreshToken: string) => void;
   register: (data: RegisterRequest) => Promise<void>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
@@ -78,6 +79,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [tempEmail, handleAuthSuccess, clearTwoFactor, navigate]
   );
 
+  // Login with OAuth2 tokens
+  const loginWithTokens = useCallback(
+    (accessToken: string, refreshTokenValue: string) => {
+      setTokens(accessToken, refreshTokenValue);
+      // Fetch user data
+      authApi.getCurrentUser().then((userData) => {
+        setUser(userData);
+        toast.success(`Welcome, ${userData.firstName}!`);
+      }).catch(() => {
+        clearAuth();
+      });
+    },
+    [setTokens, setUser, clearAuth]
+  );
+
   // Register new user
   const register = useCallback(
     async (data: RegisterRequest) => {
@@ -139,6 +155,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     requiresTwoFactor,
     login,
     loginWith2FA,
+    loginWithTokens,
     register,
     logout,
     refreshUser,

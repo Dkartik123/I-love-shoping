@@ -77,6 +77,9 @@ services:
       FACEBOOK_CLIENT_ID: ${FACEBOOK_CLIENT_ID}
       FACEBOOK_CLIENT_SECRET: ${FACEBOOK_CLIENT_SECRET}
       
+      # Frontend URL for OAuth2 redirect
+      FRONTEND_URL: http://localhost
+      
       # reCAPTCHA
       RECAPTCHA_SECRET: ${RECAPTCHA_SECRET}
       
